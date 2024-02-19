@@ -40,9 +40,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <div id="radioDiv">
                 <p>남자</p>
-                <input name="gender" id="gender" type="radio">
+                <input value="man" name="gender" id="gender" type="radio">
                 <p style="margin-left: 10px;">여자</p>
-                <input name="gender" id="gender" type="radio">
+                <input value="woman" name="gender" id="gender" type="radio">
             </div>
 
             <button type="submit">회원가입</button>
