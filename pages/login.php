@@ -1,35 +1,32 @@
 <?php
-    // 데이터베이스 연결 정보 설정
-    $host = 'localhost';
-    $dbname = 'jumin';
-    $username = 'root';
-    $password = '';
+$host = 'localhost';
+$dbname = 'jumin';
+$username = 'root';
+$password = '';
 
-    // 데이터베이스에 연결
-	$pdo = new mysqli($host, $username, $password, $dbname);
+$pdo = new mysqli($host, $username, $password, $dbname);
 
-    // 폼이 POST 방식으로 전송되었는지 확인
-	if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        // 사용자로부터 입력 받은 아이디와 비밀번호 가져오기
-		$username = $_POST["username"];
-		$password = $_POST["password"];
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = $_POST["username"];
+    $password = $_POST["password"];
 
-        // 데이터베이스에서 입력한 아이디와 비밀번호가 일치하는지 확인하는 SQL 쿼리
-		$sql = "SELECT username FROM users WHERE username = '$username' and password = '$password'";
-		$result = $pdo->query($sql);
+    $sql = "SELECT user_idx FROM users WHERE username = '$username' AND password = '$password'";
+    $result = $pdo->query($sql);
 
-        // 일치하는 레코드가 있을 경우
-		if ($result->num_rows > 0) {
-            // 세션 시작 및 사용자 아이디 세션에 저장
-			session_start();
-			$_SESSION["username"] = $username;
-            // 로그인이 성공했으므로 main.php 페이지로 리다이렉션
-			header("location: main.php");
-		} else {
-            // 일치하는 레코드가 없을 경우 알림 메시지 출력
-			echo "<script>alert('ㅗ')</script>";
-		}
-	}
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $userIdx = $row['user_idx'];
+
+        session_start();
+        $_SESSION["userIdx"] = $userIdx;
+        $_SESSION["username"] = $username;
+ 
+        header("location: /");
+        exit;
+    } else {
+        echo "<script>alert('로그인 실패')</script>";
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -50,8 +47,7 @@
             <br>
             <button type="submit">로그인</button>
         </form>
-        <a href="/pages/signup.php">회원가입</a>
+        <a href="signup">회원가입</a>
     </div>
-
 </body>
 </html>

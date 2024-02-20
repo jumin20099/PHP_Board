@@ -1,3 +1,22 @@
+<?php
+session_start();
+echo '<pre>';
+print_r($_SESSION);
+echo '</pre>';
+
+if (isset($_SESSION["userIdx"])) {
+    $userIdx = $_SESSION["userIdx"];
+    echo "로그인 됨";
+} else {
+    echo "로그인 안됨ㅋ";
+}
+
+
+function logout(){
+    session_destroy();
+}
+
+?>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -6,7 +25,10 @@
     <title>메인 페이지</title>
 </head>
 <body>
-    이곳은 메인페이지 <br>
-    루트 머시기 디렉토리 어쩌구 엑세스 저쩌구...
+    <br>
+    <form action="" method="post">
+        <button onclick="<?php echo logout();?>" id="logout" name="logout" type="submit">로그아웃</button>
+    </form>
+    <a href="login">로그인</a>
 </body>
 </html>

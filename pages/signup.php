@@ -47,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <button type="submit">회원가입</button>
         </form>
-        <a href="/pages/login.php">로그인</a>
+        <a href="login">로그인</a>
     </div>
 
 </body>
