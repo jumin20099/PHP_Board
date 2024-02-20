@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header("location: /");
         exit;
     } else {
-        echo "<script>alert('로그인 실패')</script>";
+        echo "<script>alert('ㅗ')</script>";
     }
 }
 ?>

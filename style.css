@@ -24,7 +24,7 @@ p{
 
 #container{
     text-align: center;
-    margin-top: 250px;
+    margin-top: 200px;
 }
 
 form>input{
@@ -47,4 +47,39 @@ button{
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+#background{
+    background-image: linear-gradient(to right, red, orange, yellow, green, blue, indigo, purple);
+    margin-left: 400px;
+    margin-right: 400px;
+    border-radius: 20px;
+    padding: 10px;
+    border: solid black 3px;
+}
+
+#container2{
+    text-align: center;
+    margin-top: 50px;
+}
+
+#container2>h1{
+    background-image: linear-gradient(180deg, red, orange, yellow, green, blue, navy, purple);
+    -webkit-background-clip: text;
+    color: transparent;
+    font-size: 80px;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+}
+
+#postBt{
+    margin-top: 30px;
+    margin-bottom: 30px;
+    cursor: pointer;
+}
+
+textarea{
+    resize: none;
+    margin-top: 20px;
+    font-size: 20px;
 }
