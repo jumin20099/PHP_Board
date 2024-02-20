@@ -1,31 +1,38 @@
 <?php
-$host = 'localhost';
-$dbname = 'jumin';
-$username = 'root';
-$password = '';
-
-$pdo = new mysqli($host, $username, $password, $dbname);
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST["username"];
     $password = $_POST["password"];
+    // and password = :password
+    $sql = "SELECT user_idx, password FROM users WHERE username = :username";
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(":username", $username);
+    // $stmt->bindParam(":password", $password);
 
-    $sql = "SELECT user_idx FROM users WHERE username = '$username' AND password = '$password'";
-    $result = $pdo->query($sql);
+    $stmt->execute();
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-        $userIdx = $row['user_idx'];
-
-        session_start();
-        $_SESSION["userIdx"] = $userIdx;
-        $_SESSION["username"] = $username;
- 
-        header("location: /");
+    if($user && ($password == $user['password'])){
+        $_SESSION["user_idx"] = $user["user_idx"];
+        header("Location: /");
         exit;
-    } else {
-        echo "<script>alert('ㅗ')</script>";
     }
+    else{
+        echo "아이디 혹은 비밀번호 미일치";
+    }
+    
+    // if ($result->num_rows > 0) {
+    //     $row = $result->fetch_assoc();
+    //     $userIdx = $row['user_idx'];
+        
+    //     session_start();
+    //     $_SESSION["userIdx"] = $userIdx;
+    //     $_SESSION["username"] = $username;
+        
+    //     header("location: /");
+    //     exit;
+    // } else {
+    //     echo "<script>alert('ㅗ')</script>";
+    // }
 }
 ?>
 
