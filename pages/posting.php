@@ -16,7 +16,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $sql = "INSERT INTO posts (title, content, user_idx) VALUES (?, ?, ?)";
         $stmt = $pdo->prepare($sql);
         $stmt->execute([$title, $content, $user_idx]);
-        echo "<script>alert('글쓰기 완료')</script>";
+        echo "<script>
+        alert('게시글 작성 완료');
+        location.href='posts'
+        </script>";
     } catch (PDOException $e) {
         echo $e->getMessage();
     }

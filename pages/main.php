@@ -1,11 +1,3 @@
-<?php
-if (isset($_SESSION["user_idx"])) {
-    echo "user idx : " . $_SESSION["user_idx"];
-} else {
-    echo "로그인 안됨";
-}
-
-?>
 <!DOCTYPE html>
 <html lang="ko">
 

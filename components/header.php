@@ -2,6 +2,8 @@
 <header>
     <div id="left">
         <span><a href="/">PHP&nbsp;Board</a></span>
+        <li><a style="margin-left: 20px;" href="posting">게시글 쓰러가기</a></li>
+        <li><a href="posts">게시글 보기</a></li>
     </div>
     <div id="right">
         <ul>
