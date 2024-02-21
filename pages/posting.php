@@ -1,3 +1,27 @@
+<?php
+if(!isset($_SESSION["user_idx"])){
+    echo"
+    <script>
+    alert('로그인 후 이용 가능합니다');
+    location.href='login'
+    </script>";
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $title = $_POST['title'];
+    $content = $_POST['content'];
+    $user_idx = $_SESSION["user_idx"];
+
+    try {
+        $sql = "INSERT INTO posts (title, content, user_idx) VALUES (?, ?, ?)";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$title, $content, $user_idx]);
+        echo "<script>alert('글쓰기 완료')</script>";
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="ko">
 

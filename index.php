@@ -9,25 +9,29 @@ echo "<script>console.log('path[0] = " . $path[0] . "');</script>";
 echo "<script>console.log('path[1] = " . $path[1] . "');</script>";
 
 $page = "";
-include('./components/header.php');
 switch ($resource[1]) {
     case '':
+        include('./components/header.php');
         $page = "./pages/main.php";
         break;
 
     case 'login':
+        include('./components/header.php');
         $page = "./pages/" . $resource[1] . ".php";
         break;
 
     case 'signup':
+        include('./components/header.php');
         $page = "./pages/" . $resource[1] . ".php";
         break;
 
-    case 'post':
+    case 'posting':
+        include('./components/header.php');
         $page = "./pages/" . $resource[1] . ".php";
         break;
 
     case 'logout':
+        include('./components/header.php');
         $page = "./pages/" . $resource[1] . ".php";
         break;
 

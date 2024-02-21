@@ -68,6 +68,7 @@ button {
 #content {
     background-image: url(/ㅈ같이\ 생긴\ 무지개\ 배경.gif);
     background-size: 10%;
+    background-position: 0px;
     color: white;
 }
 
@@ -124,6 +125,23 @@ li {
     float: left;
 }
 
+.logout{
+    line-height: 61px;
+}
+
+ul{
+    background-image: linear-gradient(90deg, red, orange, yellow, green, blue, navy, purple);
+    -webkit-background-clip: text;
+    color: transparent;
+    margin-right: 10px;
+    font-size: 22px;
+    font-weight: 900;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+    display: flex;
+    width: auto;
+}
+
 li>a {
     background-image: linear-gradient(90deg, red, orange, yellow, green, blue, navy, purple);
     -webkit-background-clip: text;
@@ -133,11 +151,10 @@ li>a {
 }
 
 #left {
-    width: 50%;
+    display: flex;
 }
 
 #right {
-    width: 50%;
     margin-left: 1500px;
     color: black;
 }

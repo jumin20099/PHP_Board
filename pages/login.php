@@ -3,7 +3,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST["username"];
     $password = $_POST["password"];
     // and password = :password
-    $sql = "SELECT user_idx, password FROM users WHERE username = :username";
+    $sql = "SELECT user_idx, password, username FROM users WHERE username = :username";
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(":username", $username);
     // $stmt->bindParam(":password", $password);
@@ -12,6 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if ($user && ($password == $user['password'])) {
+        session_start();
         $_SESSION["user_idx"] = $user["user_idx"];
         $_SESSION["username"] = $user["username"];
         header("Location: /");
