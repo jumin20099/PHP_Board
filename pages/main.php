@@ -1,6 +1,7 @@
 <?php
 if (isset($_SESSION["user_idx"])) {
-    echo "로그인 됨 <br>user_idx : ";
+    // echo ("반갑습니다 "). $_SESSION["username"] . ("님");
+    echo $_SESSION["username"];
     echo $_SESSION["user_idx"];
 } else {
     echo "로그인 안됨";
@@ -18,9 +19,7 @@ if (isset($_SESSION["user_idx"])) {
 </head>
 
 <body>
-    <br>
-    <a href="logout">로그아웃</a> <br>
-    <a href="login">로그인</a>
+
 </body>
 
 </html>

@@ -11,39 +11,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->execute();
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if($user && ($password == $user['password'])){
+    if ($user && ($password == $user['password'])) {
         $_SESSION["user_idx"] = $user["user_idx"];
+        $_SESSION["username"] = $user["username"];
         header("Location: /");
         exit;
-    }
-    else{
+    } else {
         echo "아이디 혹은 비밀번호 미일치";
     }
-    
-    // if ($result->num_rows > 0) {
-    //     $row = $result->fetch_assoc();
-    //     $userIdx = $row['user_idx'];
-        
-    //     session_start();
-    //     $_SESSION["userIdx"] = $userIdx;
-    //     $_SESSION["username"] = $username;
-        
-    //     header("location: /");
-    //     exit;
-    // } else {
-    //     echo "<script>alert('ㅗ')</script>";
-    // }
 }
 ?>
 
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel=stylesheet href='/style.css' type='text/css'>
     <title>로그인</title>
 </head>
+
 <body>
     <div id="container">
         <h1>로그인</h1>
@@ -57,4 +45,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <a href="signup">회원가입</a>
     </div>
 </body>
+
 </html>
