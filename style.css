@@ -158,3 +158,25 @@ li>a {
     margin-left: 1500px;
     color: black;
 }
+
+#postsTitle{
+    text-align: center;
+    margin: 30px 0px 30px 0px;
+}
+
+.post{
+    text-align: center;
+}
+
+.title{
+
+}
+
+.id{
+
+}
+
+.content{
+    color: black;
+}
+
