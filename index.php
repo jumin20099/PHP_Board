@@ -40,6 +40,11 @@ switch ($resource[1]) {
         $page = "./pages/" . $resource[1] . ".php";
         break;
 
+    case 'admin':
+        include('./components/header.php');
+        $page = "./pages/" . $resource[1] . ".php";
+        break;
+        
     default:
         $page = "./pages/404.php";
         break;
