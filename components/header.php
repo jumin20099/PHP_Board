@@ -8,7 +8,7 @@
     <div id="right">
         <ul>
             <?php
-            
+
             if (isset($_SESSION["user_idx"])) {
                 echo "<li class='logout'><a id='logout' href='logout'>로그아웃</a></li>";
                 echo $_SESSION["username"];

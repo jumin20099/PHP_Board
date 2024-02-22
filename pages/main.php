@@ -1,7 +1,7 @@
 <?php
-if($_SESSION["is_admin"] == 1){
+if ($_SESSION["is_admin"] == 1) {
     echo '<a href="admin">관리자 페이지</a>';
-} else{
+} else {
     echo '';
 }
 ?>

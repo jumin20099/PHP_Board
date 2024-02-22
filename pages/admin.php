@@ -1,4 +1,23 @@
 <?php
+if (!isset($_SESSION["user_idx"])) {
+    echo "
+    <script>
+    alert('로그인 후 이용 가능합니다');
+    location.href='login'
+    </script>";
+}
+
+if ($_SESSION["is_admin"] == 0) {
+    echo "관리자가 아닙니다";
+    echo "
+    <script>
+    alert('관리자만 접속 가능합니다.');
+    location.href='/';
+    </script>";
+} else {
+    echo "관리자입니다";
+}
+
 $sql = "SELECT * FROM posts WHERE is_deleted = 0 ORDER BY write_date DESC";
 $stmt = $pdo->prepare($sql);
 $stmt->execute();
@@ -11,31 +30,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(':post_idx', $post_idx, PDO::PARAM_INT);
     $stmt->execute();
-    echo"
+    echo "
     <script>
     alert('삭제 되었습니다');
     location.href='admin'
     </script>";
 }
 
-if(!isset($_SESSION["user_idx"])){
-    echo"
-    <script>
-    alert('로그인 후 이용 가능합니다');
-    location.href='login'
-    </script>";
-}
-
-if($_SESSION["is_admin"] == 0){
-    echo "관리자가 아닙니다";
-    echo"
-    <script>
-    alert('관리자만 접속 가능합니다.');
-    location.href='/';
-    </script>";
-} else{
-    echo "관리자입니다";
-}
 ?>
 
 <div id="postsContainer">
