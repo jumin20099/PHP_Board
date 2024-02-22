@@ -15,7 +15,7 @@ if ($_SESSION["is_admin"] == 0) {
     location.href='/';
     </script>";
 } else {
-    echo "관리자입니다";
+    echo "";
 }
 
 $sql = "SELECT * FROM posts WHERE is_deleted = 0 ORDER BY write_date DESC";
@@ -28,13 +28,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $post_idx = $_POST['post_idx'];
     $sql = "UPDATE posts SET is_deleted = 1 WHERE post_idx = :post_idx";
     $stmt = $pdo->prepare($sql);
-    $stmt->bindParam(':post_idx', $post_idx, PDO::PARAM_INT);
+    $stmt->bindParam(':post_idx', $post_idx);
     $stmt->execute();
-    echo "
-    <script>
-    alert('삭제 되었습니다');
-    location.href='admin'
-    </script>";
 }
 
 ?>
@@ -57,10 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $divInnerText .= "<p class='id'> 게시글 ID : " . $post["post_idx"] . "</p>";
             $divInnerText .= "<p class='id'> 작성일 : " . $post["write_date"] . "</p>";
             $divInnerText .= "<p class='content'>" . $post["content"] . "</p>";
-            $divInnerText .= "<form method='post' action=''>";
-            $divInnerText .= "<input type='hidden' name='post_idx' value='" . $post["post_idx"] . "'>";
-            $divInnerText .= "<button type='submit'>삭제</button>";
-            $divInnerText .= "</form>";
+            $divInnerText .= "<button id='" . $post["post_idx"] . "' onclick='postDelete(this)'>삭제</button>";
             $divInnerText .= "</div>";
             $divInnerText .= "<br>";
             echo $divInnerText;
@@ -68,3 +60,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     ?>
 </div>
+<script>
+    function postDelete(elem) {
+        const post_idx = elem.id;
+        const isConfirm = confirm(`정말로 ${post_idx}번 게시글을 삭제하시겠습니까?`);
+
+        if (isConfirm) {
+            $.ajax({
+                url: '/admin',
+                type: 'POST',
+                data: {"post_idx": post_idx},
+                success: function(){
+                    alert("게시글이 삭제되었습니다.");
+                    location.href='admin';
+                },
+                error: function(){
+                    alert("ㅗ");
+                }
+            })
+        } else {
+            alert("ㅇ");
+        }
+    }
+</script>
