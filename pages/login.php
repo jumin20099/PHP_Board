@@ -18,7 +18,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header("Location: /");
         exit;
     } else {
-        echo "아이디 혹은 비밀번호 미일치";
+        echo "
+        <script>
+        alert('아이디 혹은 비밀번호가 틀렸습니다');
+        </script>";
     }
 }
 ?>
