@@ -17,9 +17,6 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $stmt->execute();
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            $postUser_idx = isset($post["user_idx"]) ? $post["user_idx"] : '';
-            $user_idx = isset($_SESSION["user_idx"]) ? $_SESSION["user_idx"] : '';
-
             $divInnerText = "";
             $divInnerText .= "<div class='post'>";
             $divInnerText .= "<h2 class='title'>" . $post["title"] . "</h2>";
@@ -27,9 +24,6 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $divInnerText .= "<p class='id'> 게시글 ID : " . $post["post_idx"] . "</p>";
             $divInnerText .= "<p class='id'> 작성일 : " . $post["write_date"] . "</p>";
             $divInnerText .= "<p class='content'>" . $post["content"] . "</p>";
-            if($_SESSION['user_idx'] == $postUser_idx){
-                $divInnerText .= "<button>수정하기</button>";
-            }
             $divInnerText .= "</div>";
             $divInnerText .= "<br>";
             echo $divInnerText;
