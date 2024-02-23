@@ -10,7 +10,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $sql = "INSERT INTO users (username, password, email, phone_num, gender) VALUES (?, ?, ?, ?, ?)";
         $stmt = $pdo->prepare($sql);
         $stmt->execute([$username, $password, $email, $phone_num, $gender]);
-        echo "회원가입 완료ㅋ";
+        echo "
+        <script>
+        alert('회원가입 완료');
+        </script>";
     } catch (PDOException $e) {
         echo $e->getMessage();
     }
