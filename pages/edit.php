@@ -10,8 +10,6 @@ if (!isset($_SESSION["user_idx"])) {
 
 parse_str($path[1], $output);
 
-$post_idx = isset($output["post_idx"]) ? $output["post_idx"] : '';
-$output["post_idx"] = $post_idx;
 $post_idx = $output["post_idx"];
 
 $sql = "SELECT title, content FROM posts WHERE post_idx = :post_idx";
@@ -35,9 +33,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $rowCount = $stmt->rowCount();
 
         if ($rowCount > 0) {
-            echo "<script>alert('드디어성공'); location.href = 'posts';</script>";
+            echo "<script>alert('게시글이 수정 되었습니다.'); location.href = 'posts';</script>";
         } else {
-            echo "<script>alert('실패임ㅆ씨뺘ㅏㄹ');</script>";
+            echo "<script>alert('게시글 수정 실패');</script>";
         }
     } catch (PDOException $e) {
         echo $e->getMessage();

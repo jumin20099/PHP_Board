@@ -27,7 +27,7 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $divInnerText .= "<p class='id'> 작성일 : " . $post["write_date"] . "</p>";
             $divInnerText .= "<p class='content'>" . $post["content"] . "</p>";
             if($_SESSION['user_idx'] == $postUser_idx){
-                $divInnerText .= "<button><a href='edit' style=color:black>수정하기</a></button>";
+                $divInnerText .= "<button><a href='edit?post_idx=" . $post["post_idx"] . "' style=color:black>수정하기</a></button>";
             }
             $divInnerText .= "</div>";
             $divInnerText .= "<br>";
